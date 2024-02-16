@@ -1,0 +1,43 @@
+name: Sync Ostrinder Build
+
+on:
+  push:
+    branches:
+      - serge
+
+jobs:
+  sync-ostrinder-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        ref: serge
+
+    - name: Remove Existing Files
+      run: |
+        # Remove all existing files in the target directory
+        rm -rf path/to/your/target/directory/*
+
+    - name: Copy Ostrinder Build
+      run: |
+        # Ensure the directory exists before copying
+        mkdir -p path/to/your/target/directory
+
+        # Copy all files from ostrinder/build/web/ to your target directory
+        cp -r ostrinder/build/web/* path/to/your/target/directory/
+
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+
+        # Add changes
+        git add .
+
+        # Commit changes
+        git commit -m "Sync Ostrinder build to main repository"
+
+        # Push changes back to the repository
+        git push
