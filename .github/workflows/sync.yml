@@ -17,16 +17,16 @@ jobs:
 
     - name: Remove Existing Files
       run: |
-        # Remove all existing files in the target directory
-        rm -rf path/to/your/target/directory/*
+        # Remove all existing files in the root directory
+        rm -rf *
 
     - name: Copy Ostrinder Build
       run: |
         # Ensure the directory exists before copying
-        mkdir -p path/to/your/target/directory
+        mkdir -p .
 
-        # Copy all files from ostrinder/build/web/ to your target directory
-        cp -r ostrinder/build/web/* path/to/your/target/directory/
+        # Copy all files from ostrinder/build/web/ to the root directory
+        cp -r ostrinder/build/web/* .
 
     - name: Commit and Push Changes
       run: |
